@@ -68,7 +68,7 @@
             </q-item-label>
           </q-item-section>
         </q-item>
-        <q-item clickable >
+        <q-item clickable class="text-red">
           <q-item-section avatar>
             <q-icon name="exit_to_app" />
           </q-item-section>
