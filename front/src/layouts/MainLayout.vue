@@ -15,8 +15,8 @@
 
         <q-toolbar-title>
           <q-btn no-caps flat dense round icon="o_search" />
+<!--          {{ rutaActual }}-->
         </q-toolbar-title>
-
         <div>
 <!--          Quasar v{{ $q.version }}-->
           <q-btn-group flat>
@@ -35,17 +35,47 @@
       class="bg-primary text-white"
     >
       <q-list>
-        <q-item-label
-          header
-        >
-          Essential Links
+        <q-item>
+          <q-item-section avatar>
+            <q-icon name="account_circle" size="2em" />
+          </q-item-section>
+          <q-item-section>
+            <q-item-label>Administrador</q-item-label>
+            <q-item-label caption class="text-grey"> Distrital </q-item-label>
+          </q-item-section>
+        </q-item>
+        <q-separator  class="bg-white" inset />
+        <q-item-label header class="text-white">
+          Opciones
         </q-item-label>
 
-        <EssentialLink
-          v-for="link in linksList"
-          :key="link.title"
-          v-bind="link"
-        />
+<!--        <EssentialLink-->
+<!--          v-for="link in linksList"-->
+<!--          :key="link.title"-->
+<!--          v-bind="link"-->
+<!--        />-->
+        <q-item v-for="link in linksList" :key="link.title" clickable :to="link.link" exact
+                class="text-grey"
+                active-class="bg-blue text-white"
+        >
+          <q-item-section avatar>
+            <q-icon :name="$route.path === link.link ? 'o_' + link.icon : link.icon"
+                    :class="$route.path === link.link ? 'text-white' : ''"/>
+          </q-item-section>
+          <q-item-section>
+            <q-item-label :class="$route.path === link.link ? 'text-white text-bold' : ''">
+              {{ link.title }}
+            </q-item-label>
+          </q-item-section>
+        </q-item>
+        <q-item clickable >
+          <q-item-section avatar>
+            <q-icon name="exit_to_app" />
+          </q-item-section>
+          <q-item-section>
+            <q-item-label>Salir</q-item-label>
+          </q-item-section>
+        </q-item>
       </q-list>
     </q-drawer>
 
@@ -56,71 +86,89 @@
 </template>
 
 <script>
-import { defineComponent, ref } from 'vue'
-import EssentialLink from 'components/EssentialLink.vue'
-
-const linksList = [
-  {
-    title: 'Docs',
-    // caption: 'quasar.dev',
-    icon: 'school',
-    link: 'https://quasar.dev'
-  },
-  {
-    title: 'Github',
-    // caption: 'github.com/quasarframework',
-    icon: 'code',
-    link: 'https://github.com/quasarframework'
-  },
-  {
-    title: 'Discord Chat Channel',
-    // caption: 'chat.quasar.dev',
-    icon: 'chat',
-    link: 'https://chat.quasar.dev'
-  },
-  {
-    title: 'Forum',
-    // caption: 'forum.quasar.dev',
-    icon: 'record_voice_over',
-    link: 'https://forum.quasar.dev'
-  },
-  {
-    title: 'Twitter',
-    // caption: '@quasarframework',
-    icon: 'rss_feed',
-    link: 'https://twitter.quasar.dev'
-  },
-  {
-    title: 'Facebook',
-    // caption: '@QuasarFramework',
-    icon: 'public',
-    link: 'https://facebook.quasar.dev'
-  },
-  {
-    title: 'Quasar Awesome',
-    // caption: 'Community Quasar projects',
-    icon: 'favorite',
-    link: 'https://awesome.quasar.dev'
-  }
-]
-
-export default defineComponent({
+// import { defineComponent, ref } from 'vue'
+// import EssentialLink from 'components/EssentialLink.vue'
+//
+// const linksList = [
+//   {
+//     title: 'Principal',
+//     icon: 'home',
+//     link: '/'
+//   },
+//   {
+//     title: 'Gestion',
+//     icon: 'settings',
+//     link: '/gestion'
+//   },
+//   {
+//     title: 'Almacen',
+//     icon: 'store',
+//     link: '/almacen'
+//   },
+//   {
+//     title: 'Poa',
+//     icon: 'assignment',
+//     link: '/poa'
+//   }
+// ]
+//
+// export default defineComponent({
+//   name: 'MainLayout',
+//
+//   components: {
+//     EssentialLink
+//   },
+//
+//   setup () {
+//     const leftDrawerOpen = ref(false)
+//
+//     return {
+//       linksList,
+//       leftDrawerOpen,
+//       toggleLeftDrawer () {
+//         leftDrawerOpen.value = !leftDrawerOpen.value
+//       }
+//     }
+//   }
+// })
+export default {
   name: 'MainLayout',
-
-  components: {
-    EssentialLink
-  },
-
-  setup () {
-    const leftDrawerOpen = ref(false)
-
+  data () {
     return {
-      linksList,
-      leftDrawerOpen,
-      toggleLeftDrawer () {
-        leftDrawerOpen.value = !leftDrawerOpen.value
-      }
+      leftDrawerOpen: false,
+      linksList: [
+        {
+          title: 'Principal',
+          icon: 'home',
+          link: '/'
+        },
+        {
+          title: 'Gestion',
+          icon: 'settings',
+          link: '/gestion'
+        },
+        {
+          title: 'Almacen',
+          icon: 'store',
+          link: '/almacen'
+        },
+        {
+          title: 'Poa',
+          icon: 'assignment',
+          link: '/poa'
+        }
+      ]
+    }
+  },
+  methods: {
+    toggleLeftDrawer () {
+      this.leftDrawerOpen = !this.leftDrawerOpen
+    }
+  },
+  computed: {
+    rutaActual () {
+      return this.$route.path
     }
   }
-})
+}
 </script>
