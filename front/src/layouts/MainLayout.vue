@@ -2,6 +2,7 @@
   <q-layout view="hHh Lpr lFf">
     <q-header
       class="bg-white text-primary"
+      bordered
     >
       <q-toolbar>
         <q-btn
