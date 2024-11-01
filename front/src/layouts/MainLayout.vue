@@ -1,6 +1,8 @@
 <template>
-  <q-layout view="lHh Lpr lFf">
-    <q-header>
+  <q-layout view="hHh Lpr lFf">
+    <q-header
+      class="bg-white text-primary"
+    >
       <q-toolbar>
         <q-btn
           flat
@@ -12,17 +14,25 @@
         />
 
         <q-toolbar-title>
-          Quasar App
+          <q-btn no-caps flat dense round icon="o_search" />
         </q-toolbar-title>
 
-        <div>Quasar v{{ $q.version }}</div>
+        <div>
+<!--          Quasar v{{ $q.version }}-->
+          <q-btn-group flat>
+            <q-btn no-caps icon="o_notifications" />
+            <q-btn no-caps icon="o_account_circle" />
+          </q-btn-group>
+        </div>
       </q-toolbar>
     </q-header>
 
     <q-drawer
       v-model="leftDrawerOpen"
       show-if-above
-      bordered
+      :width="200"
+      :breakpoint="500"
+      class="bg-primary text-white"
     >
       <q-list>
         <q-item-label
@@ -52,43 +62,43 @@ import EssentialLink from 'components/EssentialLink.vue'
 const linksList = [
   {
     title: 'Docs',
-    caption: 'quasar.dev',
+    // caption: 'quasar.dev',
     icon: 'school',
     link: 'https://quasar.dev'
   },
   {
     title: 'Github',
-    caption: 'github.com/quasarframework',
+    // caption: 'github.com/quasarframework',
     icon: 'code',
     link: 'https://github.com/quasarframework'
   },
   {
     title: 'Discord Chat Channel',
-    caption: 'chat.quasar.dev',
+    // caption: 'chat.quasar.dev',
     icon: 'chat',
     link: 'https://chat.quasar.dev'
   },
   {
     title: 'Forum',
-    caption: 'forum.quasar.dev',
+    // caption: 'forum.quasar.dev',
     icon: 'record_voice_over',
     link: 'https://forum.quasar.dev'
   },
   {
     title: 'Twitter',
-    caption: '@quasarframework',
+    // caption: '@quasarframework',
     icon: 'rss_feed',
     link: 'https://twitter.quasar.dev'
   },
   {
     title: 'Facebook',
-    caption: '@QuasarFramework',
+    // caption: '@QuasarFramework',
     icon: 'public',
     link: 'https://facebook.quasar.dev'
   },
   {
     title: 'Quasar Awesome',
-    caption: 'Community Quasar projects',
+    // caption: 'Community Quasar projects',
     icon: 'favorite',
     link: 'https://awesome.quasar.dev'
   }
