@@ -57,7 +57,7 @@
 <!--        />-->
         <q-item v-for="link in linksList" :key="link.title" clickable :to="link.link" exact
                 class="text-grey"
-                active-class="bg-blue text-white"
+                active-class="menu"
         >
           <q-item-section avatar>
             <q-icon :name="$route.path === link.link ? 'o_' + link.icon : link.icon"
@@ -173,3 +173,11 @@ export default {
   }
 }
 </script>
+<style>
+.menu{
+  background-color: #1976D2;
+  border-radius: 10px;
+  margin: 5px;
+  padding: 10px
+}
+</style>
