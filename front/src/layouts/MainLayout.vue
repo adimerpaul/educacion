@@ -85,79 +85,18 @@
     </q-page-container>
   </q-layout>
 </template>
-
 <script>
-// import { defineComponent, ref } from 'vue'
-// import EssentialLink from 'components/EssentialLink.vue'
-//
-// const linksList = [
-//   {
-//     title: 'Principal',
-//     icon: 'home',
-//     link: '/'
-//   },
-//   {
-//     title: 'Gestion',
-//     icon: 'settings',
-//     link: '/gestion'
-//   },
-//   {
-//     title: 'Almacen',
-//     icon: 'store',
-//     link: '/almacen'
-//   },
-//   {
-//     title: 'Poa',
-//     icon: 'assignment',
-//     link: '/poa'
-//   }
-// ]
-//
-// export default defineComponent({
-//   name: 'MainLayout',
-//
-//   components: {
-//     EssentialLink
-//   },
-//
-//   setup () {
-//     const leftDrawerOpen = ref(false)
-//
-//     return {
-//       linksList,
-//       leftDrawerOpen,
-//       toggleLeftDrawer () {
-//         leftDrawerOpen.value = !leftDrawerOpen.value
-//       }
-//     }
-//   }
-// })
 export default {
   name: 'MainLayout',
   data () {
     return {
       leftDrawerOpen: false,
       linksList: [
-        {
-          title: 'Principal',
-          icon: 'home',
-          link: '/'
-        },
-        {
-          title: 'Gestion',
-          icon: 'settings',
-          link: '/gestion'
-        },
-        {
-          title: 'Almacen',
-          icon: 'store',
-          link: '/almacen'
-        },
-        {
-          title: 'Poa',
-          icon: 'assignment',
-          link: '/poa'
-        }
+        {title: 'Principal', icon: 'home', link: '/'},
+        {title: 'Gestion', icon: 'settings', link: '/gestion'},
+        {title: 'Usuarios', icon: 'people', link: '/usuarios'},
+        {title: 'Almacen', icon: 'store', link: '/almacen'},
+        {title: 'Poa', icon: 'assignment', link: '/poa'}
       ]
     }
   },
