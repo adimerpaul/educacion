@@ -22,7 +22,34 @@
 <!--          Quasar v{{ $q.version }}-->
           <q-btn-group flat>
             <q-btn no-caps icon="o_notifications" />
-            <q-btn no-caps icon="o_account_circle" />
+            <q-btn no-caps icon="o_account_circle" >
+              <q-menu>
+                <q-list>
+                  <q-item clickable>
+                    <q-item-section avatar>
+                      <q-icon name="account_circle" />
+                    </q-item-section>
+                    <q-item-section>
+                      <q-item-label>
+                        {{ $store.user.name }}
+                      </q-item-label>
+                      <q-item-label caption>
+                        {{ $store.user.role }}
+                      </q-item-label>
+                    </q-item-section>
+                  </q-item>
+                  <q-separator />
+                  <q-item clickable>
+                    <q-item-section avatar>
+                      <q-icon name="exit_to_app" />
+                    </q-item-section>
+                    <q-item-section>
+                      <q-item-label>Salir</q-item-label>
+                    </q-item-section>
+                  </q-item>
+                </q-list>
+              </q-menu>
+            </q-btn>
           </q-btn-group>
         </div>
       </q-toolbar>
@@ -38,11 +65,25 @@
       <q-list>
         <q-item>
           <q-item-section avatar>
-            <q-icon name="account_circle" size="2em" />
+            <q-icon name="account_circle" />
           </q-item-section>
           <q-item-section>
-            <q-item-label>Administrador</q-item-label>
-            <q-item-label caption class="text-grey"> Distrital </q-item-label>
+<!--            <pre>-->
+<!--              {{ $store.user}}-->
+<!--            </pre>-->
+            <q-item-label >
+              {{ $store.user.name }}
+<!--              <q-chip color="white" text-color="primary" dense>-->
+              <span class="text-bold">
+                {{ $store.user.role }}
+              </span>
+<!--              </q-chip>-->
+            </q-item-label>
+<!--            <q-item-label class="text-grey">-->
+<!--              <q-chip color="white" text-color="primary" dense>-->
+<!--                {{ $store.user.role }}-->
+<!--              </q-chip>-->
+<!--            </q-item-label>-->
           </q-item-section>
         </q-item>
         <q-separator  class="bg-white" inset />
@@ -69,7 +110,7 @@
             </q-item-label>
           </q-item-section>
         </q-item>
-        <q-item clickable class="text-red">
+        <q-item clickable class="text-red" @click="logout">
           <q-item-section avatar>
             <q-icon name="exit_to_app" />
           </q-item-section>
@@ -101,6 +142,15 @@ export default {
     }
   },
   methods: {
+    logout () {
+      this.$alert.dialog('¿Desea salir del sistema?')
+        .onOk(() => {
+          this.$store.isLogged = false
+          this.$store.user = {}
+          localStorage.removeItem('tokenEducation')
+          this.$router.push('/login')
+        })
+    },
     toggleLeftDrawer () {
       this.leftDrawerOpen = !this.leftDrawerOpen
     }
