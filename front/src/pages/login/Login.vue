@@ -6,14 +6,19 @@
           <div class="col-12 col-md-8 flex flex-center" style="background: #E6EDF9;height: 100vh" v-if="!$q.screen.lt.md">
             <div style="position: absolute; top: 25px; left: 40px">
 <!--              <div class="q-ml-lg">-->
-                <q-img src="icon.svg" width="25px" class="q-mr-md" />
+<!--                <q-img src="icon.svg" width="25px" class="q-mr-md" />-->
+              <q-img src="logoLargo.png" width="150px" />
 <!--              </div>-->
-              <q-img src="dark-logo-text-CiIbURQ-.svg" width="100px" />
+<!--              <q-img src="dark-logo-text-CiIbURQ-.svg" width="100px" />-->
             </div>
             <q-img src="login-bg-BprgzFH_.svg" width="450px" />
           </div>
           <div class="col-12 col-md-4 flex flex-center ">
+            <q-form @submit="login" class="q-gutter-md" style="max-width: 400px">
             <div class="row q-pa-lg">
+              <div class="col-12 flex flex-center">
+                <q-img src="logoLargo.png" width="150px" />
+              </div>
               <div class="col-12 text-h6 text-bold">Bienvenido al sistema</div>
               <div class="col-12 text-subtitle1">Inicia sesión para continuar</div>
               <div class="col-12 q-pt-md">
@@ -34,12 +39,13 @@
                 </a>
               </div>
               <div class="col-12 q-mt-md">
-                <q-btn color="blue" label="Iniciar sesión" class="full-width" no-caps />
+                <q-btn color="blue" label="Iniciar sesión" class="full-width" no-caps :loading="loading" type="submit" />
               </div>
               <div class="col-12 q-mt-md">
                 No tienes cuenta? <a href="">Regístrate</a>
               </div>
             </div>
+            </q-form>
           </div>
         </div>
       </q-page>
@@ -51,9 +57,25 @@
 export default {
   data() {
     return {
-      username: '',
-      password: '',
-      remember: false
+      username: 'admin',
+      password: 'admin',
+      remember: false,
+      loading: false
+    }
+  },
+  methods: {
+    login() {
+      this.loading = true
+      this.$axios.post('login', {
+        username: this.username,
+        password: this.password
+      }).then(response => {
+        this.$router.push('/')
+      }).catch(error => {
+        this.$alert.error(error.response.data.message)
+      }).finally(() => {
+        this.loading = false
+      })
     }
   }
 }
