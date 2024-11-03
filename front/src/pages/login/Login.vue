@@ -69,7 +69,14 @@ export default {
       this.$axios.post('login', {
         username: this.username,
         password: this.password
-      }).then(response => {
+      }).then(res => {
+        const user = res.data.user
+        const token = res.data.token
+        this.$axios.defaults.headers.common['Authorization'] = `Bearer ${token}`
+        this.$store.isLogged = true
+        this.$store.user = user
+        localStorage.setItem('tokenEducation', token)
+        this.$alert.success('Bienvenido ' + user.name)
         this.$router.push('/')
       }).catch(error => {
         this.$alert.error(error.response.data.message)

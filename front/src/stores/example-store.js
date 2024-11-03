@@ -4,6 +4,7 @@ export const useCounterStore = defineStore('counter', {
   state: () => ({
     counter: 0,
     isLogged: !!localStorage.getItem('tokenEducation'),
+    user: {},
   }),
   getters: {
     doubleCount: (state) => state.counter * 2,
