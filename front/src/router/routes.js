@@ -3,10 +3,10 @@ const routes = [
     path: '/',
     component: () => import('layouts/MainLayout.vue'),
     children: [
-      { path: '', component: () => import('pages/IndexPage.vue') },
-      { path: 'almacen', component: () => import('pages/almacen/Almacen.vue') },
-      { path: 'gestion', component: () => import('pages/gestion/Gestion.vue') },
-      { path: 'poa', component: () => import('pages/poa/Poa.vue') },
+      { path: '', component: () => import('pages/IndexPage.vue') , meta: { requiresAuth: true } },
+      { path: 'almacen', component: () => import('pages/almacen/Almacen.vue'), meta: { requiresAuth: true } },
+      { path: 'gestion', component: () => import('pages/gestion/Gestion.vue'), meta: { requiresAuth: true } },
+      { path: 'poa', component: () => import('pages/poa/Poa.vue'), meta: { requiresAuth: true } },
     ]
   },
   {
