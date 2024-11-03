@@ -1,7 +1,7 @@
 <template>
   <q-page class="q-pa-md">
-    <q-table :rows="periodos" :columns="columns" dense wrap-cells flat bordered :rows-per-page-options="[0]"
-             title="Gestiones">
+    <q-table :rows="users" :columns="columns" dense wrap-cells flat bordered :rows-per-page-options="[0]"
+              title="Usuarios">
       <template v-slot:top-right>
         <q-toolbar>
           <q-space />
@@ -11,8 +11,8 @@
       <template v-slot:body-cell-actions="props">
         <q-td :props="props">
           <q-btn-group flat>
-            <q-btn color="primary" icon="edit" @click="periodoEdit(props.row)" dense size="10px" />
-            <q-btn color="negative" icon="delete" @click="periodoDelete(props.row.id)" dense size="10px" />
+            <q-btn color="primary" icon="edit" @click="userEdit(props.row)" dense size="10px" />
+            <q-btn color="negative" icon="delete" @click="userDelete(props.row.id)" dense size="10px" />
           </q-btn-group>
         </q-td>
       </template>
@@ -24,47 +24,48 @@
         </q-td>
       </template>
     </q-table>
-    <q-dialog v-model="periodoDialog" persistent>
+    <q-dialog v-model="userDialog" persistent>
       <q-card>
         <q-card-section class="q-pb-none row items-center">
           <div>
-            {{ actionPeriodo }} periodo
+            {{ actionPeriodo }} user
           </div>
           <q-space />
-          <q-btn icon="close" flat round dense @click="periodoDialog = false" />
+          <q-btn icon="close" flat round dense @click="userDialog = false" />
         </q-card-section>
         <q-card-section class="q-pt-none">
-          <q-form @submit="periodo.id ? periodoPut() : periodoPost()">
-<!--            <q-input v-model="periodo.periodo" label="Periodo" outlined dense />-->
-            <q-select v-model="periodo.periodo" label="Periodo" outlined dense :options="peridosSelect" />
-            <q-input v-model="periodo.fecha_inicio" label="Fecha inicio" type="date" outlined dense />
-            <q-input v-model="periodo.fecha_fin" label="Fecha fin" type="date" outlined dense />
+          <q-form @submit="user.id ? userPut() : userPost()">
+            <!--            <q-input v-model="user.user" label="Periodo" outlined dense />-->
+            <q-select v-model="user.user" label="Periodo" outlined dense :options="peridosSelect" />
+            <q-input v-model="user.fecha_inicio" label="Fecha inicio" type="date" outlined dense />
+            <q-input v-model="user.fecha_fin" label="Fecha fin" type="date" outlined dense />
             <div>
               <q-btn color="primary" label="Guardar" type="submit" no-caps :loading="loading" />
-              <q-btn color="negative" label="Cancelar" @click="periodoDialog = false" no-caps :loading="loading" />
+              <q-btn color="negative" label="Cancelar" @click="userDialog = false" no-caps :loading="loading" />
             </div>
           </q-form>
         </q-card-section>
       </q-card>
     </q-dialog>
-<!--    <pre>{{ periodos }}</pre>-->
+    <!--    <pre>{{ users }}</pre>-->
   </q-page>
 </template>
 <script>
 import moment from 'moment'
 export default {
+  name: 'UsuariosPage',
   data() {
     return {
-      periodos: [],
-      periodo: {},
-      periodoDialog: false,
+      users: [],
+      user: {},
+      userDialog: false,
       loading: false,
       actionPeriodo: '',
       gestiones: [],
       columns: [
         { name: 'actions', label: 'Acciones', align: 'center' },
         // { name: 'id', label: 'ID', align: 'left', field: 'id', sortable: true },
-        { name: 'periodo', label: 'Periodo', align: 'left', field: 'periodo', sortable: true },
+        { name: 'user', label: 'Periodo', align: 'left', field: 'user', sortable: true },
         { name: 'estado', label: 'Estado', align: 'left', field: 'estado', sortable: true },
         { name: 'fecha_inicio', label: 'Fecha inicio', align: 'left', field: 'fecha_inicio', sortable: true },
         { name: 'fecha_fin', label: 'Fecha fin', align: 'left', field: 'fecha_fin', sortable: true },
@@ -73,7 +74,7 @@ export default {
     }
   },
   mounted() {
-    this.periodosGet()
+    this.usersGet()
     let year = moment().year()
     for (let i = year - 5; i <= year + 5; i++) {
       this.peridosSelect.push(i)
@@ -81,18 +82,18 @@ export default {
   },
   methods: {
     newPeriodo() {
-      this.periodo = {
-        periodo: moment().year(),
+      this.user = {
+        user: moment().year(),
         fecha_inicio: moment().format('YYYY-MM-DD'),
         fecha_fin: moment().format('YYYY-MM-DD')
       }
       this.actionPeriodo = 'Nuevo'
-      this.periodoDialog = true
+      this.userDialog = true
     },
-    periodosGet() {
+    usersGet() {
       this.loading = true
-      this.$axios.get('periodos').then(res => {
-        this.periodos = res.data
+      this.$axios.get('users').then(res => {
+        this.users = res.data
       }).catch(error => {
         this.$alert.error(error.response.data.message)
       }).finally(() => {
@@ -109,11 +110,11 @@ export default {
         this.loading = false
       })
     },
-    periodoPost() {
+    userPost() {
       this.loading = true
-      this.$axios.post('periodos', this.periodo).then(res => {
-        this.periodosGet()
-        this.periodoDialog = false
+      this.$axios.post('users', this.user).then(res => {
+        this.usersGet()
+        this.userDialog = false
         this.$alert.success('Periodo creado')
       }).catch(error => {
         this.$alert.error(error.response.data.message)
@@ -121,11 +122,11 @@ export default {
         this.loading = false
       })
     },
-    periodoPut() {
+    userPut() {
       this.loading = true
-      this.$axios.put('periodos/' + this.periodo.id, this.periodo).then(res => {
-        this.periodosGet()
-        this.periodoDialog = false
+      this.$axios.put('users/' + this.user.id, this.user).then(res => {
+        this.usersGet()
+        this.userDialog = false
         this.$alert.success('Periodo actualizado')
       }).catch(error => {
         this.$alert.error(error.response.data.message)
@@ -133,17 +134,17 @@ export default {
         this.loading = false
       })
     },
-    periodoEdit(periodo) {
-      this.periodo = { ...periodo }
+    userEdit(user) {
+      this.user = { ...user }
       this.actionPeriodo = 'Editar'
-      this.periodoDialog = true
+      this.userDialog = true
     },
-    periodoDelete(id) {
-      this.$alert.dialog('¿Desea eliminar el periodo?')
+    userDelete(id) {
+      this.$alert.dialog('¿Desea eliminar el user?')
         .onOk(() => {
           this.loading = true
-          this.$axios.delete('periodos/' + id).then(res => {
-            this.periodosGet()
+          this.$axios.delete('users/' + id).then(res => {
+            this.usersGet()
             this.$alert.success('Periodo eliminado')
           }).catch(error => {
             this.$alert.error(error.response.data.message)

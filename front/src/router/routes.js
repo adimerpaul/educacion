@@ -6,6 +6,7 @@ const routes = [
       { path: '', component: () => import('pages/IndexPage.vue') , meta: { requiresAuth: true } },
       { path: 'almacen', component: () => import('pages/almacen/Almacen.vue'), meta: { requiresAuth: true } },
       { path: 'gestion', component: () => import('pages/gestion/Gestion.vue'), meta: { requiresAuth: true } },
+      { path: 'usuarios', component: () => import('pages/usuarios/Usuarios.vue'), meta: { requiresAuth: true } },
       { path: 'poa', component: () => import('pages/poa/Poa.vue'), meta: { requiresAuth: true } },
     ]
   },
