@@ -39,5 +39,28 @@ export class Alert{
       },
     })
   }
+  static dialogPrompt (message) {
+    return Dialog.create({
+      title: 'Confirmación',
+      message,
+      // position: 'top',
+      color: 'positive',
+      ok: {
+        label: 'Aceptar',
+        color: 'positive'
+      },
+      cancel: {
+        label: 'Cancelar',
+        color: 'negative'
+      },
+      prompt: {
+        model: '',
+        type: 'text',
+        label: 'Ingrese el texto',
+        // required: true,
+        // rules: [(val) => val !== '']
+      }
+    })
+  }
 
 }

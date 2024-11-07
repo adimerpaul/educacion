@@ -40,8 +40,8 @@
             <q-input v-model="periodo.fecha_inicio" label="Fecha inicio" type="date" outlined dense />
             <q-input v-model="periodo.fecha_fin" label="Fecha fin" type="date" outlined dense />
             <div>
-              <q-btn color="primary" label="Guardar" type="submit" no-caps :loading="loading" />
               <q-btn color="negative" label="Cancelar" @click="periodoDialog = false" no-caps :loading="loading" />
+              <q-btn color="primary" label="Guardar" type="submit" no-caps :loading="loading" class="q-ml-sm" />
             </div>
           </q-form>
         </q-card-section>

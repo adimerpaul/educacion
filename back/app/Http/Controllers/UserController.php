@@ -37,7 +37,14 @@ class UserController extends Controller{
     }
     function update(Request $request, $id){
         $user = User::find($id);
-        $user->update($request->all());
+        $user->update($request->except('password'));
+        return $user;
+    }
+    function updatePassword(Request $request, $id){
+        $user = User::find($id);
+        $user->update([
+            'password' => bcrypt($request->password),
+        ]);
         return $user;
     }
     function store(Request $request){

@@ -21,4 +21,10 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('/users', [App\Http\Controllers\UserController::class, 'store']);
     Route::put('/users/{user}', [App\Http\Controllers\UserController::class, 'update']);
     Route::delete('/users/{user}', [App\Http\Controllers\UserController::class, 'destroy']);
+    Route::put('/updatePassword/{user}', [App\Http\Controllers\UserController::class, 'updatePassword']);
+
+    Route::get('/areas', [App\Http\Controllers\AreaController::class, 'index']);
+    Route::post('/areas', [App\Http\Controllers\AreaController::class, 'store']);
+    Route::put('/areas/{area}', [App\Http\Controllers\AreaController::class, 'update']);
+    Route::delete('/areas/{area}', [App\Http\Controllers\AreaController::class, 'destroy']);
 });

@@ -1,25 +1,53 @@
 <template>
   <q-page class="q-pa-md">
     <q-table :rows="users" :columns="columns" dense wrap-cells flat bordered :rows-per-page-options="[0]"
-              title="Usuarios">
+              title="Usuarios" :filter="filter">
       <template v-slot:top-right>
-        <q-toolbar>
-          <q-space />
-          <q-btn color="primary" label="Nuevo" @click="newPeriodo" outline no-caps size="10px" icon="add_circle_outline" :loading="loading" />
-        </q-toolbar>
+          <q-btn color="primary" label="Nuevo" @click="userNew" outline no-caps  icon="add_circle_outline" :loading="loading" />
+          <q-input v-model="filter" label="Buscar" dense outlined >
+            <template v-slot:append>
+              <q-icon name="search" />
+            </template>
+          </q-input>
       </template>
       <template v-slot:body-cell-actions="props">
         <q-td :props="props">
-          <q-btn-group flat>
-            <q-btn color="primary" icon="edit" @click="userEdit(props.row)" dense size="10px" />
-            <q-btn color="negative" icon="delete" @click="userDelete(props.row.id)" dense size="10px" />
-          </q-btn-group>
+          <q-btn-dropdown label="Opciones" no-caps size="10px" dense color="primary">
+<!--            <q-btn color="primary" icon="edit" @click="userEdit(props.row)" dense size="10px" />-->
+<!--            <q-btn color="negative" icon="delete" @click="userDelete(props.row.id)" dense size="10px" />-->
+              <q-list>
+                <q-item clickable @click="userEdit(props.row)" v-close-popup>
+                  <q-item-section avatar>
+                    <q-icon name="edit" />
+                  </q-item-section>
+                  <q-item-section>
+                    <q-item-label>Editar</q-item-label>
+                  </q-item-section>
+                </q-item>
+                <q-item clickable @click="userDelete(props.row.id)" v-close-popup>
+                  <q-item-section avatar>
+                    <q-icon name="delete" />
+                  </q-item-section>
+                  <q-item-section>
+                    <q-item-label>Eliminar</q-item-label>
+                  </q-item-section>
+                </q-item>
+                <q-item clickable @click="userEditPassword(props.row)" v-close-popup>
+                  <q-item-section avatar>
+                    <q-icon name="edit" />
+                  </q-item-section>
+                  <q-item-section>
+                    <q-item-label>Cambiar contraseña</q-item-label>
+                  </q-item-section>
+                </q-item>
+              </q-list>
+          </q-btn-dropdown>
         </q-td>
       </template>
-      <template v-slot:body-cell-estado="props">
+      <template v-slot:body-cell-role="props">
         <q-td :props="props">
-          <q-chip :label="props.row.estado"
-                  :color="props.row.estado === 'Vigente' ? 'green' : props.row.estado === 'Próximo' ? 'orange' : 'red'"
+          <q-chip :label="props.row.role"
+                  :color="props.row.role === 'Jefatura' ? 'primary' : 'positive'"
                   text-color="white" dense  size="14px"/>
         </q-td>
       </template>
@@ -35,32 +63,20 @@
         </q-card-section>
         <q-card-section class="q-pt-none">
           <q-form @submit="user.id ? userPut() : userPost()">
-            <!--            <q-input v-model="user.user" label="Periodo" outlined dense />-->
-            <q-select v-model="user.user" label="Periodo" outlined dense :options="peridosSelect" />
-            <q-input v-model="user.fecha_inicio" label="Fecha inicio" type="date" outlined dense />
-            <q-input v-model="user.fecha_fin" label="Fecha fin" type="date" outlined dense />
-            <div>
-              <q-btn color="primary" label="Guardar" type="submit" no-caps :loading="loading" />
+            <q-input v-model="user.name" label="Nombre" dense outlined :rules="[val => !!val || 'Campo requerido']" />
+            <q-input v-model="user.username" label="Usuario" dense outlined :rules="[val => !!val || 'Campo requerido']" />
+            <q-input v-model="user.email" label="Email" dense outlined hint="" />
+            <q-input v-model="user.password" label="Contraseña" dense outlined :rules="[val => !!val || 'Campo requerido']" v-if="!user.id" />
+            <q-select v-model="user.role" label="Rol" dense outlined :options="['Area', 'Jefatura']" :rules="[val => !!val || 'Campo requerido']" />
+            <q-select v-model="user.area_id" label="Area" dense outlined :options="areas" :rules="[val => !!val || 'Campo requerido']" emit-value map-options :option-label="area => area.nombre" :option-value="area => area.id" />
+            <div class="text-right" >
               <q-btn color="negative" label="Cancelar" @click="userDialog = false" no-caps :loading="loading" />
+              <q-btn color="primary" label="Guardar" type="submit" no-caps :loading="loading" class="q-ml-sm" />
             </div>
           </q-form>
         </q-card-section>
       </q-card>
     </q-dialog>
-    <pre>{{ users }}</pre>
-<!--    [-->
-<!--    {-->
-<!--    "id": 11,-->
-<!--    "name": "Sofía Santillán",-->
-<!--    "username": "mora.adrian",-->
-<!--    "role": "Area",-->
-<!--    "email": "uzambrano@example.org",-->
-<!--    "area_id": 7,-->
-<!--    "area": {-->
-<!--    "id": 7,-->
-<!--    "nombre": "Area 7"-->
-<!--    }-->
-<!--    },-->
   </q-page>
 </template>
 <script>
@@ -75,6 +91,7 @@ export default {
       loading: false,
       actionPeriodo: '',
       gestiones: [],
+      filter: '',
       columns: [
         { name: 'actions', label: 'Acciones', align: 'center' },
         { name: 'name', label: 'Nombre', align: 'left', field: 'name' },
@@ -83,22 +100,33 @@ export default {
         { name: 'email', label: 'Email', align: 'left', field: 'email' },
         { name: 'area', label: 'Area', align: 'left', field: row => row.area?.nombre },
       ],
-      peridosSelect: []
+      areas: [],
     }
   },
   mounted() {
     this.usersGet()
-    let year = moment().year()
-    for (let i = year - 5; i <= year + 5; i++) {
-      this.peridosSelect.push(i)
-    }
+    this.areasGet()
   },
   methods: {
-    newPeriodo() {
+    areasGet() {
+      this.loading = true
+      this.$axios.get('areas').then(res => {
+        this.areas = res.data
+      }).catch(error => {
+        this.$alert.error(error.response.data.message)
+      }).finally(() => {
+        this.loading = false
+      })
+    },
+    userNew() {
       this.user = {
-        user: moment().year(),
-        fecha_inicio: moment().format('YYYY-MM-DD'),
-        fecha_fin: moment().format('YYYY-MM-DD')
+        name: '',
+        email: '',
+        password: '',
+        area_id: 1,
+        username: '',
+        cargo: '',
+        role: 'Area',
       }
       this.actionPeriodo = 'Nuevo'
       this.userDialog = true
@@ -146,6 +174,18 @@ export default {
       }).finally(() => {
         this.loading = false
       })
+    },
+    userEditPassword(user) {
+      this.user = { ...user }
+      this.$alert.dialogPrompt('Nueva contraseña', 'Ingrese la nueva contraseña', 'password')
+        .onOk(password => {
+          this.$axios.put('updatePassword/' + user.id, { password }).then(res => {
+            this.usersGet()
+            this.$alert.success('Contraseña actualizada')
+          }).catch(error => {
+            this.$alert.error(error.response.data.message)
+          })
+        })
     },
     userEdit(user) {
       this.user = { ...user }
