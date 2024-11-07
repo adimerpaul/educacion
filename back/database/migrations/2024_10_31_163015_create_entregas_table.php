@@ -19,6 +19,7 @@ return new class extends Migration
             $table->foreign('poa_id')->references('id')->on('poas');
             $table->dateTime('fecha');
             $table->text('observacion')->nullable();
+            $table->softDeletes();
             $table->timestamps();
         });
     }

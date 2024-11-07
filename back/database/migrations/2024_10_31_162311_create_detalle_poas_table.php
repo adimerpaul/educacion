@@ -21,6 +21,7 @@ return new class extends Migration
             $table->double('precio_unitario');
             $table->double('total');
             $table->integer('cantidad_entregada')->default(0);
+            $table->softDeletes();
             $table->timestamps();
         });
     }

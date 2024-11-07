@@ -32,4 +32,10 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('/materials', [App\Http\Controllers\MaterialController::class, 'store']);
     Route::put('/materials/{material}', [App\Http\Controllers\MaterialController::class, 'update']);
     Route::delete('/materials/{material}', [App\Http\Controllers\MaterialController::class, 'destroy']);
+
+    Route::get('/poas', [App\Http\Controllers\PoaController::class, 'index']);
+    Route::post('/poas', [App\Http\Controllers\PoaController::class, 'store']);
+    Route::put('/poas/{poa}', [App\Http\Controllers\PoaController::class, 'update']);
+    Route::delete('/poas/{poa}', [App\Http\Controllers\PoaController::class, 'destroy']);
+    Route::get('/periodos/activos', [App\Http\Controllers\PeriodoController::class, 'periodosActivos']);
 });

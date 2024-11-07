@@ -1,7 +1,7 @@
 <template>
   <q-page class="q-pa-md">
     <q-table :rows="materials" :columns="columns" dense wrap-cells flat bordered :rows-per-page-options="[0]"
-             title="Usuarios" :filter="filter">
+             title="Almacen" :filter="filter">
       <template v-slot:top-right>
         <q-btn color="primary" label="Nuevo" @click="materialNew" outline no-caps  icon="add_circle_outline" :loading="loading" />
         <q-input v-model="filter" label="Buscar" dense outlined >
@@ -56,7 +56,6 @@
             <q-input v-model="material.partida" label="Partida" outlined dense type="number" :rules="[val => val > 0 || 'Partida es requerida']" />
             <q-input v-model="material.descripcion" label="Descripción" outlined dense :rules="[val => !!val || 'Campo requerido']" />
             <q-input v-model="material.cantidad" label="Cantidad" outlined dense type="number" :rules="[val => val > 0 || 'Cantidad es requerida']" />
-<!--            <q-input v-model="material.unidad" label="Unidad" outlined dense type="number" :rules="[val => val > 0 || 'Unidad es requerida']" />-->
             <q-select v-model="material.unidad" label="Unidad" outlined dense :options="unidades" :rules="[val => !!val || 'Unidad es requerida']" />
             <q-input v-model="material.precio" label="Precio" outlined dense type="number" :step="0.01" :rules="[val => val > 0 || 'Precio es requerido']" />
             <div class="text-right" >
@@ -72,7 +71,7 @@
 <script>
 import moment from 'moment'
 export default {
-  name: 'UsuariosPage',
+  name: 'AlmacenPage',
   data() {
     return {
       materials: [],

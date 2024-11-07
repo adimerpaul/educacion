@@ -21,6 +21,7 @@ return new class extends Migration
             $table->double('precio_unitario');
             $table->double('total');
             $table->text('observacion')->nullable();
+            $table->softDeletes();
             $table->timestamps();
         });
     }
