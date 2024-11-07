@@ -8,6 +8,14 @@ use App\Models\Poa;
 use Illuminate\Http\Request;
 
 class PoaController extends Controller{
+    function materialDelete(DetallePoa $detallePoa){
+        $detallePoa->delete();
+        return $detallePoa;
+    }
+    function materialUpdate(Request $request, DetallePoa $detallePoa){
+        $detallePoa->update($request->all());
+        return $detallePoa;
+    }
     function materialAdd(Request $request){
         $poa = Poa::find($request->poa_id);
         $material = Material::find($request->material_id);

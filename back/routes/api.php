@@ -40,4 +40,6 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::delete('/poas/{poa}', [App\Http\Controllers\PoaController::class, 'destroy']);
     Route::get('/periodos/activos', [App\Http\Controllers\PeriodoController::class, 'periodosActivos']);
     Route::post('/materialAdd', [App\Http\Controllers\PoaController::class, 'materialAdd']);
+    Route::put('/materialUpdate/{detallePoa}', [App\Http\Controllers\PoaController::class, 'materialUpdate']);
+    Route::delete('/materialDelete/{detallePoa}', [App\Http\Controllers\PoaController::class, 'materialDelete']);
 });

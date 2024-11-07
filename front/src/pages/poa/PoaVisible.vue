@@ -58,7 +58,43 @@
             </q-markup-table>
           </div>
           <div class="col-12 col-md-6">
-            <pre>{{poa}}</pre>
+            <div class="text-right">
+              <q-btn color="primary" label="Imprimir"  icon="print" no-caps />
+            </div>
+<!--            <pre>{{poa}}</pre>-->
+            <q-markup-table dense flat bordered wrap-cells>
+              <thead class="bg-primary text-white">
+              <tr>
+                <th>Material</th>
+                <th>Partida</th>
+                <th>Unidad</th>
+                <th>Cantidad</th>
+                <th>Precio</th>
+                <th>Subtotal</th>
+                <th>Opcion</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr v-for="detalle in poa.detalles" :key="detalle.id">
+                <td>
+                  <div style="width: 150px; line-height: 1; word-wrap: break-word; white-space: normal;">
+                    {{ detalle.material.descripcion }}
+                  </div>
+                </td>
+                <td>{{detalle.material.partida}}</td>
+                <td>{{detalle.material.unidad}}</td>
+                <td>
+<!--                  {{detalle.cantidad}}-->
+                  <q-input v-model="detalle.cantidad" dense outlined type="number" min="1" @update:modelValue="updateCantidad(detalle)" :debounce="500" />
+                </td>
+                <td>{{detalle.material.precio}}</td>
+                <td>{{(detalle.cantidad * detalle.material.precio).toFixed(2)}}</td>
+                <td>
+                  <q-btn color="negative" dense icon="delete" size="10px" @click="materialDelete(detalle)" :loading="loading" />
+                </td>
+              </tr>
+              </tbody>
+            </q-markup-table>
           </div>
         </div>
       </q-card-section>
@@ -112,6 +148,23 @@ export default {
     this.materialsGet()
   },
   methods: {
+    materialDelete(detalle) {
+      this.$axios.delete(`materialDelete/${detalle.id}`).then(res => {
+        this.$alert.success('Material eliminado')
+        this.poa.detalles = this.poa.detalles.filter(item => item.id !== detalle.id)
+      }).catch(error => {
+        this.$alert.error(error.response.data.message)
+      })
+    },
+    updateCantidad(detalle) {
+      this.$axios.put(`materialUpdate/${detalle.id}`, {
+        cantidad: detalle.cantidad
+      }).then(res => {
+        this.$alert.success('Cantidad actualizada')
+      }).catch(error => {
+        this.$alert.error(error.response.data.message)
+      })
+    },
     materialAdd(material) {
       // verificar si existe el material en el poa
       if (this.poa.detalles.find(detalle => detalle.material_id === material.id)) {
