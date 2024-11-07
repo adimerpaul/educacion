@@ -39,7 +39,7 @@
                     </q-item-section>
                   </q-item>
                   <q-separator />
-                  <q-item clickable>
+                  <q-item clickable @click="logout" v-close-popup>
                     <q-item-section avatar>
                       <q-icon name="exit_to_app" />
                     </q-item-section>
