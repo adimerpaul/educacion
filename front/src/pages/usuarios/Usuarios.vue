@@ -13,8 +13,6 @@
       <template v-slot:body-cell-actions="props">
         <q-td :props="props">
           <q-btn-dropdown label="Opciones" no-caps size="10px" dense color="primary">
-<!--            <q-btn color="primary" icon="edit" @click="userEdit(props.row)" dense size="10px" />-->
-<!--            <q-btn color="negative" icon="delete" @click="userDelete(props.row.id)" dense size="10px" />-->
               <q-list>
                 <q-item clickable @click="userEdit(props.row)" v-close-popup>
                   <q-item-section avatar>
