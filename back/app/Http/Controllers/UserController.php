@@ -29,4 +29,28 @@ class UserController extends Controller{
     function me(Request $request){
         return $request->user();
     }
+    function index(){
+        return User::where('id', '!=', 1)
+            ->orderBy('id', 'desc')
+            ->with('area')
+            ->get();
+    }
+    function update(Request $request, $id){
+        $user = User::find($id);
+        $user->update($request->all());
+        return $user;
+    }
+    function store(Request $request){
+        $validatedData = $request->validate([
+            'username' => 'required|unique:users',
+            'password' => 'required',
+            'name' => 'required',
+//            'email' => 'required|email|unique:users',
+        ]);
+        $user = User::create($request->all());
+        return $user;
+    }
+    function destroy($id){
+        return User::destroy($id);
+    }
 }

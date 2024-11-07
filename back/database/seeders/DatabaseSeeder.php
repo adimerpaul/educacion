@@ -22,13 +22,13 @@ class DatabaseSeeder extends Seeder
 //            'name' => 'Test User',
 //            'email' => 'test@example.com',
 //        ]);
-
+        Area::create(['nombre' => 'Unidad de Asuntos Administrativos']);
         for ($i = 0; $i < 10; $i++) {
             Area::create(['nombre' => 'Area ' . ($i+1)]);
         }
+
         User::create(['name' => 'Adminsitrador','username' => 'admin','password' => bcrypt('admin'),'area_id' => 1,'role' => 'Jefatura']);
         User::factory(10)->create();
-
 
         Material::create(['partida' => '32100', 'descripcion' => 'PAPEL BOND T/OFICIO', 'cantidad' => 6000, 'unidad' => 'Hojas', 'precio' => 0.084]);
         Material::create(['partida' => '32100', 'descripcion' => 'PAPEL BOND T/CARTA', 'cantidad' => 6000, 'unidad' => 'Hojas', 'precio' => 0.072]);

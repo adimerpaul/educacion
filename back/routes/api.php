@@ -16,4 +16,9 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('/periodos', [App\Http\Controllers\PeriodoController::class, 'store']);
     Route::put('/periodos/{periodo}', [App\Http\Controllers\PeriodoController::class, 'update']);
     Route::delete('/periodos/{periodo}', [App\Http\Controllers\PeriodoController::class, 'destroy']);
+
+    Route::get('/users', [App\Http\Controllers\UserController::class, 'index']);
+    Route::post('/users', [App\Http\Controllers\UserController::class, 'store']);
+    Route::put('/users/{user}', [App\Http\Controllers\UserController::class, 'update']);
+    Route::delete('/users/{user}', [App\Http\Controllers\UserController::class, 'destroy']);
 });

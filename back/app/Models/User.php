@@ -25,6 +25,7 @@ class User extends Authenticatable
         'password',
         'area_id',
         'username',
+        'cargo',
         'role',
     ];
     function area(){
@@ -42,6 +43,7 @@ class User extends Authenticatable
         'created_at',
         'updated_at',
         'deleted_at',
+        'email_verified_at',
     ];
 
     /**

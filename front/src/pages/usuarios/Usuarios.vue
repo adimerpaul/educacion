@@ -47,7 +47,20 @@
         </q-card-section>
       </q-card>
     </q-dialog>
-    <!--    <pre>{{ users }}</pre>-->
+    <pre>{{ users }}</pre>
+<!--    [-->
+<!--    {-->
+<!--    "id": 11,-->
+<!--    "name": "Sofía Santillán",-->
+<!--    "username": "mora.adrian",-->
+<!--    "role": "Area",-->
+<!--    "email": "uzambrano@example.org",-->
+<!--    "area_id": 7,-->
+<!--    "area": {-->
+<!--    "id": 7,-->
+<!--    "nombre": "Area 7"-->
+<!--    }-->
+<!--    },-->
   </q-page>
 </template>
 <script>
@@ -64,11 +77,11 @@ export default {
       gestiones: [],
       columns: [
         { name: 'actions', label: 'Acciones', align: 'center' },
-        // { name: 'id', label: 'ID', align: 'left', field: 'id', sortable: true },
-        { name: 'user', label: 'Periodo', align: 'left', field: 'user', sortable: true },
-        { name: 'estado', label: 'Estado', align: 'left', field: 'estado', sortable: true },
-        { name: 'fecha_inicio', label: 'Fecha inicio', align: 'left', field: 'fecha_inicio', sortable: true },
-        { name: 'fecha_fin', label: 'Fecha fin', align: 'left', field: 'fecha_fin', sortable: true },
+        { name: 'name', label: 'Nombre', align: 'left', field: 'name' },
+        { name: 'username', label: 'Usuario', align: 'left', field: 'username' },
+        { name: 'role', label: 'Rol', align: 'left', field: 'role' },
+        { name: 'email', label: 'Email', align: 'left', field: 'email' },
+        { name: 'area', label: 'Area', align: 'left', field: row => row.area?.nombre },
       ],
       peridosSelect: []
     }
