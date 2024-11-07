@@ -24,12 +24,21 @@
         <q-td :props="props">
           <q-btn-dropdown label="Opciones" no-caps size="10px" dense color="primary">
             <q-list>
-              <q-item clickable @click="poaEdit(props.row)" v-close-popup>
+<!--              <q-item clickable @click="poaEdit(props.row)" v-close-popup>-->
+<!--                <q-item-section avatar>-->
+<!--                  <q-icon name="edit" />-->
+<!--                </q-item-section>-->
+<!--                <q-item-section>-->
+<!--                  <q-item-label>Editar</q-item-label>-->
+<!--                </q-item-section>-->
+<!--              </q-item>-->
+<!--              btn administrar-->
+              <q-item clickable @click="poaVisible(props.row)" v-close-popup>
                 <q-item-section avatar>
-                  <q-icon name="edit" />
+                  <q-icon name="visibility" />
                 </q-item-section>
                 <q-item-section>
-                  <q-item-label>Editar</q-item-label>
+                  <q-item-label>Administrar</q-item-label>
                 </q-item-section>
               </q-item>
               <q-item clickable @click="poaDelete(props.row.id)" v-close-popup>
@@ -44,14 +53,15 @@
           </q-btn-dropdown>
         </q-td>
       </template>
-      <template v-slot:body-cell-role="props">
+      <template v-slot:body-cell-estado="props">
         <q-td :props="props">
-          <q-chip :label="props.row.role"
-                  :color="props.row.role === 'Jefatura' ? 'primary' : 'positive'"
+          <q-chip :label="props.row.estado"
+                  :color="props.row.estado === 'Abierto' ? 'primary' : 'red'"
                   text-color="white" dense  size="14px"/>
         </q-td>
       </template>
     </q-table>
+    <pre>{{ poas }}</pre>
     <q-dialog v-model="poaDialog" persistent>
       <q-card>
         <q-card-section class="q-pb-none row items-center">
@@ -90,11 +100,11 @@ export default {
       filter: '',
       columns: [
         { name: 'actions', label: 'Acciones', align: 'center' },
-        { name: 'partida', label: 'Partida', align: 'left', field: 'partida', sortable: true },
-        { name: 'descripcion', label: 'Descripción', align: 'left', field: 'descripcion', sortable: true },
-        { name: 'cantidad', label: 'Cantidad', align: 'left', field: 'cantidad', sortable: true },
-        { name: 'unidad', label: 'Unidad', align: 'left', field: 'unidad', sortable: true },
-        { name: 'precio', label: 'Precio', align: 'left', field: 'precio', sortable: true },
+        { name: 'fecha', label: 'Fecha', align: 'center', field: row => moment(row.fecha).format('DD/MM/YYYY') },
+        { name: 'estado', label: 'Estado', align: 'center', field: row => row.estado },
+        { name: 'periodo', label: 'Periodo', align: 'center', field: row => row.periodo.periodo },
+        { name: 'area', label: 'Area', align: 'center', field: row => row.area?.nombre },
+        { name: 'user', label: 'Usuario', align: 'center', field: row => row.user?.name },
       ],
     }
   },
@@ -155,6 +165,9 @@ export default {
       this.poa = { ...poa }
       this.actionPeriodo = 'Editar'
       this.poaDialog = true
+    },
+    poaVisible(poa) {
+      this.$router.push({ name: 'poaVisible', params: { id: poa.id } })
     },
     poaDelete(id) {
       this.$alert.dialog('¿Desea eliminar el poa?')

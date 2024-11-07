@@ -35,6 +35,7 @@ Route::middleware('auth:sanctum')->group(function () {
 
     Route::get('/poas', [App\Http\Controllers\PoaController::class, 'index']);
     Route::post('/poas', [App\Http\Controllers\PoaController::class, 'store']);
+    Route::get('/poas/{poa}', [App\Http\Controllers\PoaController::class, 'show']);
     Route::put('/poas/{poa}', [App\Http\Controllers\PoaController::class, 'update']);
     Route::delete('/poas/{poa}', [App\Http\Controllers\PoaController::class, 'destroy']);
     Route::get('/periodos/activos', [App\Http\Controllers\PeriodoController::class, 'periodosActivos']);
