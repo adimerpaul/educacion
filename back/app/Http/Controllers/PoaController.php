@@ -2,10 +2,27 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\DetallePoa;
+use App\Models\Material;
 use App\Models\Poa;
 use Illuminate\Http\Request;
 
 class PoaController extends Controller{
+    function materialAdd(Request $request){
+        $poa = Poa::find($request->poa_id);
+        $material = Material::find($request->material_id);
+
+        $detallePoa = new DetallePoa();
+//        protected $fillable = ['poa_id', 'material_id', 'cantidad', 'precio_unitario', 'total', 'cantidad_entregada'];
+        $detallePoa->poa_id = $poa->id;
+        $detallePoa->material_id = $material->id;
+        $detallePoa->cantidad = $request->cantidad;
+        $detallePoa->precio_unitario = $material->precio;
+        $detallePoa->total = $request->cantidad * $material->precio;
+        $detallePoa->cantidad_entregada = 0;
+        $detallePoa->save();
+        return $detallePoa::with('material')->find($detallePoa->id);
+    }
     function index(Request $request){
         $user = $request->user();
         if ($user->id == 1) {

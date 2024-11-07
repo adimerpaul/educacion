@@ -21,11 +21,49 @@
             <span class="text-bold">Fecha: </span>
             <span>{{poa.fecha}}</span>
           </div>
-          <div class="col-12"></div>
+          <div class="col-12 col-md-6">
+            <q-input v-model="buscar" label="Buscar" dense outlined>
+              <template v-slot:append>
+                <q-icon name="search" />
+              </template>
+            </q-input>
+            <q-markup-table dense flat bordered wrap-cells>
+              <thead class="bg-primary text-white">
+              <tr>
+                <th>Material</th>
+                <th>Partida</th>
+                <th>Unidad</th>
+                <th>Cantidad</th>
+                <th>Precio</th>
+                <th>Opcion</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr v-for="material in materialsFiltered" :key="material.id">
+                <td>
+                  <div style="width: 150px; line-height: 1; word-wrap: break-word; white-space: normal;">
+                    {{ material.descripcion }}
+                  </div>
+                </td>
+                <td>{{material.partida}}</td>
+                <td>{{material.unidad}}</td>
+                <td>{{material.cantidad}}</td>
+                <td>{{material.precio}}</td>
+                <td>
+<!--                  btn agragar-->
+                  <q-btn @click="materialAdd(material)" color="positive" dense icon="add" size="10px" :loading="loading" />
+                </td>
+              </tr>
+              </tbody>
+            </q-markup-table>
+          </div>
+          <div class="col-12 col-md-6">
+            <pre>{{poa}}</pre>
+          </div>
         </div>
       </q-card-section>
     </q-card>
-    <pre>{{poa}}</pre>
+<!--    <pre>{{materials}}</pre>-->
 <!--    {-->
 <!--    "id": 2,-->
 <!--    "area_id": 1,-->
@@ -64,12 +102,43 @@ export default {
     return {
       poa_id: this.$route.params.id,
       poa: {},
+      materials: [],
+      buscar: '',
+      loading: false
     }
   },
   mounted() {
     this.poaGet()
+    this.materialsGet()
   },
   methods: {
+    materialAdd(material) {
+      // verificar si existe el material en el poa
+      if (this.poa.detalles.find(detalle => detalle.material_id === material.id)) {
+        this.$alert.error('Material ya agregado')
+        return false
+      }
+      this.loading = true
+      this.$axios.post(`materialAdd`, {
+        material_id: material.id,
+        poa_id: this.poa_id,
+        cantidad: 1
+      }).then(res => {
+        this.$alert.success('Material agregado')
+        this.poa.detalles.push(res.data)
+      }).catch(error => {
+        this.$alert.error(error.response.data.message)
+      }).finally(() => {
+        this.loading = false
+      })
+    },
+    materialsGet() {
+      this.$axios.get(`materials`).then(res => {
+        this.materials = res.data
+      }).catch(error => {
+        this.$alert.error(error.response.data.message)
+      })
+    },
     poaGet() {
       this.$axios.get(`poas/${this.poa_id}`).then(res => {
         this.poa = res.data
@@ -77,6 +146,14 @@ export default {
         this.$alert.error(error.response.data.message)
       })
     },
+  },
+  computed: {
+    materialsFiltered() {
+      return this.materials.filter(material => {
+        return material.descripcion.toLowerCase().includes(this.buscar.toLowerCase()) ||
+          material.partida.toString().toLowerCase().includes(this.buscar.toLowerCase());
+      });
+    }
   }
 }
 </script>
