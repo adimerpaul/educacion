@@ -5,9 +5,19 @@ namespace App\Http\Controllers;
 use App\Models\DetallePoa;
 use App\Models\Material;
 use App\Models\Poa;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\App;
 
 class PoaController extends Controller{
+    function poaPrint(Poa $poa){
+        $poa = Poa::with('area', 'periodo', 'user', 'detalles.material')->find($poa->id);
+//        $pdf = App::make('dompdf.wrapper');
+//        $pdf->loadHTML('<h1>Test</h1>');
+//        return $pdf->stream();
+        $pdf = Pdf::loadView('pdf.poa');
+        return $pdf->stream('poa.pdf');
+    }
     function materialDelete(DetallePoa $detallePoa){
         $detallePoa->delete();
         return $detallePoa;

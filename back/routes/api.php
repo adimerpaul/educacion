@@ -43,3 +43,4 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::put('/materialUpdate/{detallePoa}', [App\Http\Controllers\PoaController::class, 'materialUpdate']);
     Route::delete('/materialDelete/{detallePoa}', [App\Http\Controllers\PoaController::class, 'materialDelete']);
 });
+Route::get('/poaPrint/{poa}', [App\Http\Controllers\PoaController::class, 'poaPrint']);
