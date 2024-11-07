@@ -59,7 +59,7 @@
           </div>
           <div class="col-12 col-md-6">
             <div class="text-right">
-              <q-btn color="primary" label="Imprimir"  icon="print" no-caps />
+              <q-btn color="primary" label="Imprimir"  icon="print" no-caps @click="imprimir" />
             </div>
 <!--            <pre>{{poa}}</pre>-->
             <q-markup-table dense flat bordered wrap-cells>
@@ -148,6 +148,10 @@ export default {
     this.materialsGet()
   },
   methods: {
+    imprimir() {
+      const url = `poaPrint/${this.poa_id}`
+      window.open(this.$url+url, '_blank')
+    },
     materialDelete(detalle) {
       this.$axios.delete(`materialDelete/${detalle.id}`).then(res => {
         this.$alert.success('Material eliminado')

@@ -134,8 +134,8 @@ export default {
       leftDrawerOpen: false,
       linksList: [
         {title: 'Principal', icon: 'home', link: '/'},
-        {title: 'Gestion', icon: 'settings', link: '/gestion'},
         {title: 'Usuarios', icon: 'people', link: '/usuarios'},
+        {title: 'Gestion', icon: 'settings', link: '/gestion'},
         {title: 'Almacen', icon: 'store', link: '/almacen'},
         {title: 'Poa', icon: 'assignment', link: '/poa'}
       ]
