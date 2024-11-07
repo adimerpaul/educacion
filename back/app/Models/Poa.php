@@ -18,4 +18,7 @@ class Poa extends Model{
     function user(){
         return $this->belongsTo(User::class);
     }
+    function detalles(){
+        return $this->hasMany(DetallePoa::class);
+    }
 }

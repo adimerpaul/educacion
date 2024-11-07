@@ -56,12 +56,12 @@
       <template v-slot:body-cell-estado="props">
         <q-td :props="props">
           <q-chip :label="props.row.estado"
-                  :color="props.row.estado === 'Abierto' ? 'primary' : 'red'"
+                  :color="props.row.estado === 'Abierto' ? 'positive' : 'red'"
                   text-color="white" dense  size="14px"/>
         </q-td>
       </template>
     </q-table>
-    <pre>{{ poas }}</pre>
+<!--    <pre>{{ poas }}</pre>-->
     <q-dialog v-model="poaDialog" persistent>
       <q-card>
         <q-card-section class="q-pb-none row items-center">

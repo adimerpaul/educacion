@@ -24,6 +24,7 @@ class PoaController extends Controller{
         $poa->save();
     }
     function show(Poa $poa){
+        $poa = Poa::with('area', 'periodo', 'user', 'detalles.material')->find($poa->id);
         return $poa;
     }
     function update(Request $request, Poa $poa){
