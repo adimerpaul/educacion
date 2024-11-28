@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Periodo;
+use App\Models\Poa;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
 
 class PeriodoController extends Controller{
@@ -35,5 +37,13 @@ class PeriodoController extends Controller{
     function destroy(Periodo $periodo){
         $periodo->delete();
         return $periodo;
+    }
+    function formulario1($id){
+        $periodo = Periodo::find($id);
+//        $pdf = App::make('dompdf.wrapper');
+//        $pdf->loadHTML('<h1>Test</h1>');
+//        return $pdf->stream();
+        $pdf = Pdf::loadView('pdf.f1', compact('periodo'));
+        return $pdf->stream('poa.pdf');
     }
 }
