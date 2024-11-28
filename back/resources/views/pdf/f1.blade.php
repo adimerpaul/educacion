@@ -84,25 +84,54 @@
         <td></td>
     </tr>
 </table>
-
-<h2>Responsables de la Información</h2>
+<br><br>
 <table class="table-container">
+    <thead>
     <tr>
-        <th style="width: 33%">Elaborado</th>
-        <th style="width: 34%">Cargo</th>
-        <th style="width: 33%">Firma</th>
+        <th class="bg-green">Código PEI (1)</th>
+        <th class="bg-green">Acción Institucional Específica (2)</th>
+        <th class="bg-green">Indicador de Proceso (3)</th>
+        <th class="bg-green">Área o Unidad Responsable (4)</th>
+        <th class="bg-green">Código POA (5)</th>
+        <th class="bg-green">Acción de Corto Plazo Gestión 2020 (6)</th>
+        <th class="bg-green">Resultado Esperado Gestión 2020 (7)</th>
+        <th class="bg-green">Total Presupuesto de Gasto (Bs.) (8)</th>
     </tr>
-    <tr style="width: 34%">
-        <td></td>
-        <td></td>
-        <td></td>
-    </tr>
+    </thead>
+    <tbody>
     <tr>
-        <td>Aprobado: Lic. Jorge Andres Quintela Vargas</td>
-        <td>Jefe Unidad Asuntos Administrativos</td>
-        <td></td>
+        <td>3.4.10</td>
+        <td>Lograr la participación, corresponsabilidad social comunitaria y armonizada de todos los actores involucrados en la educación en el departamento.</td>
+        <td>
+            <ul>
+                <li>Porcentaje de Universalización del MESCp en los sistemas educativos.</li>
+                <li>Número de Juntas escolares capacitadas: 640 (2020).</li>
+                <li>N° de Bachilleres educación Regular: 10,190 (2020).</li>
+                <li>N° de Bachilleres en educación Alternativa y Especial: 631 (2020).</li>
+                <li>Porcentaje de participación de los actores sociales: 60% (2020).</li>
+                <li>Porcentaje del presupuesto institucional ejecutado anualmente: 86% (2020).</li>
+            </ul>
+        </td>
+        <td>SER, SEA, SEFP, DDE, UAA, IAJ, UAJ y TPSC</td>
+        <td>5</td>
+        <td>
+            Universalizar el Modelo Educativo Socio-Comunitario Productivo (MESCp) y lograr la participación, corresponsabilidad social comunitaria y armonizada de todos los actores involucrados en la educación en el departamento de Oruro, en la gestión 2020.
+        </td>
+        <td>
+            Se incentivó la participación activa de padres y madres de familia, y organizaciones sociales en la implementación de los documentos curriculares.
+        </td>
+        <td>2,186,420</td>
     </tr>
+    </tbody>
 </table>
+
+{{--<h2>Total Acción Específica de Corto Plazo</h2>--}}
+{{--<table class="table-container">--}}
+{{--    <tr>--}}
+{{--        <td class="text-bold">Total:</td>--}}
+{{--        <td>2,186,420</td>--}}
+{{--    </tr>--}}
+{{--</table>--}}
 
 </body>
 </html>
