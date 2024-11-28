@@ -68,10 +68,20 @@
         <td class="">DIRECCION DEPARTAMENTAL DE EDUCACION ORURO</td>
     </tr>
     <tr>
-        <td class="bg-green text-bold">DENOMINACIÓN DE LA INTERVENCIÓN</td>
+        <td class="bg-green text-bold" rowspan="3">DENOMINACIÓN DE LA INTERVENCIÓN</td>
         <td class="" colspan="3">84- Institucionalización de las instancias de participación social comunitaria como base fundamental del desarrollo de la educación. </td>
-        <td class="bg-green text-bold">Fecha</td>
-        <td class="">GASTO CORRIENTE </td>
+        <td class="bg-green text-bold">FECHA</td>
+        <td class="">{{ date('d/m/Y') }}</td>
+    </tr>
+    <tr>
+        <td class="" colspan="3">00- Actividad Central</td>
+        <td></td>
+        <td></td>
+    </tr>
+    <tr>
+        <td class="" colspan="3">09- Participacion de Diferentes actores para el desarrollo de la gestion educativa</td>
+        <td></td>
+        <td></td>
     </tr>
 </table>
 
