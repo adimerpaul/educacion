@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 class PeriodoController extends Controller{
     function periodosActivos(){
         $now = date('Y-m-d');
-        return Periodo::where('fecha_inicio', '<=', $now)->where('fecha_fin', '>=', $now)->get();
+        return Periodo::where('fechaInicio', '<=', $now)->where('fechaFin', '>=', $now)->get();
     }
     function index(Request $request){
         return Periodo::orderBy('id', 'desc')->get();
