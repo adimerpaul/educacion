@@ -25,11 +25,11 @@ return new class extends Migration
             $table->string('accionCortoPlazo1')->nullable();
             $table->string('accionCortoPlazo2')->nullable();
             $table->string('accionCortoPlazo3')->nullable();
-            $table->string('resultadoEsperado1')->nullable();
-            $table->string('resultadoEsperado2')->nullable();
-            $table->string('resultadoEsperado3')->nullable();
-            $table->string('resultadoEsperado4')->nullable();
-            $table->string('resultadoEsperado5')->nullable();
+            $table->string('resultadoEsperadoGestion1')->nullable();
+            $table->string('resultadoEsperadoGestion2')->nullable();
+            $table->string('resultadoEsperadoGestion3')->nullable();
+            $table->string('resultadoEsperadoGestion4')->nullable();
+            $table->string('resultadoEsperadoGestion5')->nullable();
             $table->string('fechaPrevistaInicio1')->nullable();
             $table->string('fechaPrevistaInicio2')->nullable();
             $table->string('fechaPrevistaInicio3')->nullable();
