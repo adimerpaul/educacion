@@ -45,7 +45,7 @@
       <template v-slot:body-cell-role="props">
         <q-td :props="props">
           <q-chip :label="props.row.role"
-                  :color="props.row.role === 'Jefatura' ? 'primary' : 'positive'"
+                  :color="$filters.colorRole(props.row.role)"
                   text-color="white" dense  size="14px"/>
         </q-td>
       </template>
@@ -65,7 +65,7 @@
             <q-input v-model="user.username" label="Usuario" dense outlined :rules="[val => !!val || 'Campo requerido']" />
             <q-input v-model="user.email" label="Email" dense outlined hint="" />
             <q-input v-model="user.password" label="Contraseña" dense outlined :rules="[val => !!val || 'Campo requerido']" v-if="!user.id" />
-            <q-select v-model="user.role" label="Rol" dense outlined :options="['Area', 'Jefatura']" :rules="[val => !!val || 'Campo requerido']" />
+            <q-select v-model="user.role" label="Rol" dense outlined :options="$roles" :rules="[val => !!val || 'Campo requerido']" />
             <q-select v-model="user.area_id" label="Area" dense outlined :options="areas" :rules="[val => !!val || 'Campo requerido']" emit-value map-options :option-label="area => area.nombre" :option-value="area => area.id" />
             <div class="text-right" >
               <q-btn color="negative" label="Cancelar" @click="userDialog = false" no-caps :loading="loading" />

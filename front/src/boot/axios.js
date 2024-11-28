@@ -16,6 +16,33 @@ export default boot(({ app, router }) => {
   app.config.globalProperties.$axios = axios.create({ baseURL: import.meta.env.VITE_API_BACK })
   app.config.globalProperties.$alert = Alert
   app.config.globalProperties.$store = useCounterStore()
+  app.config.globalProperties.$roles = [
+    'Administrador',
+    'Planificacion',
+    'Almacen',
+  ]
+  // filters
+  app.config.globalProperties.$filters = {
+    capitalize: function (value) {
+      if (!value) return ''
+      const valueLower = value.toLowerCase()
+      return valueLower.charAt(0).toUpperCase() + valueLower.slice(1)
+    },
+    colorRole: function (value) {
+      // console.log(value)
+      if (!value) return ''
+      switch (value) {
+        case 'Administrador':
+          return 'primary'
+        case 'Planificacion':
+          return 'green'
+        case 'Almacen':
+          return 'accent'
+        default:
+          return 'grey-8'
+      }
+    }
+  }
   app.config.globalProperties.$url = import.meta.env.VITE_API_BACK
   const token = localStorage.getItem('tokenEducation')
   if (token) {

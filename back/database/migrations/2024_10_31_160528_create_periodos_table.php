@@ -14,8 +14,28 @@ return new class extends Migration
         Schema::create('periodos', function (Blueprint $table) {
             $table->id();
             $table->integer('periodo');
-            $table->date('fecha_inicio');
-            $table->date('fecha_fin');
+            $table->date('fechaInicio');
+            $table->date('fechaFin');
+            $table->string('accionInstitucional')->nullable();
+            $table->string('accionCortoPlazo')->nullable();
+            $table->string('resultadoEsperado1')->nullable();
+            $table->string('resultadoEsperado2')->nullable();
+            $table->string('totalPresupuesto')->nullable();
+
+            $table->string('accionCortoPlazo1')->nullable();
+            $table->string('accionCortoPlazo2')->nullable();
+            $table->string('accionCortoPlazo3')->nullable();
+            $table->string('resultadoEsperado1')->nullable();
+            $table->string('resultadoEsperado2')->nullable();
+            $table->string('resultadoEsperado3')->nullable();
+            $table->string('resultadoEsperado4')->nullable();
+            $table->string('resultadoEsperado5')->nullable();
+            $table->string('fechaPrevistaInicio1')->nullable();
+            $table->string('fechaPrevistaInicio2')->nullable();
+            $table->string('fechaPrevistaInicio3')->nullable();
+            $table->string('fechaPrevistaFinalizacion1')->nullable();
+            $table->string('fechaPrevistaFinalizacion2')->nullable();
+            $table->string('fechaPrevistaFinalizacion3')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });

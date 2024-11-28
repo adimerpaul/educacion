@@ -22,10 +22,19 @@ class DatabaseSeeder extends Seeder
 //            'name' => 'Test User',
 //            'email' => 'test@example.com',
 //        ]);
-        Area::create(['nombre' => 'Unidad de Asuntos Administrativos']);
-        for ($i = 0; $i < 10; $i++) {
-            Area::create(['nombre' => 'Area ' . ($i+1)]);
-        }
+//        Area::create(['nombre' => 'Unidad de Asuntos Administrativos']);
+    Area::create(['nombre' => 'Subdireccion de eduacion regular']);
+    Area::create(['nombre' => 'Subdireccion de eduacion alternativa y especial']);
+    Area::create(['nombre' => 'Subdireccion de eduacaion superior formacion frofecional']);
+    Area::create(['nombre' => 'Direccion departamental e eduacaion']);
+    Area::create(['nombre' => 'Unidad de asuntos administrativos']);
+    Area::create(['nombre' => 'Unidada de auditoria interna']);
+    Area::create(['nombre' => 'Unidad de asitos juridicos']);
+    Area::create(['nombre' => 'Trasparencia psc']);
+
+//        for ($i = 0; $i < 10; $i++) {
+//            Area::create(['nombre' => 'Area ' . ($i+1)]);
+//        }
 
         User::create(['name' => 'Adminsitrador','username' => 'admin','password' => bcrypt('admin'),'area_id' => 1,'role' => 'Jefatura']);
         User::factory(10)->create();
@@ -62,6 +71,6 @@ class DatabaseSeeder extends Seeder
         Material::create(['partida' => '32200', 'descripcion' => 'Tablero t/oficio', 'cantidad' => 2, 'unidad' => 'Pieza', 'precio' => 18]);
         Material::create(['partida' => '39500', 'descripcion' => 'Lápiz color Azul', 'cantidad' => 10, 'unidad' => 'Pieza', 'precio' => 2.8]);
 
-        Periodo::create(['periodo' => 2024, 'fecha_inicio' => '2024-01-01', 'fecha_fin' => '2024-12-31']);
+//        Periodo::create(['periodo' => 2024, 'fechaInicio' => '2024-01-01', 'fechaFin' => '2024-12-31']);
     }
 }
