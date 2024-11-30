@@ -110,7 +110,9 @@
     <tbody>
     <tr>
         <td rowspan="6">3.4.10</td>
-        <td rowspan="6">Lograr la participación, corresponsabilidad social comunitaria y armonizada de todos los actores involucrados en la educación en el departamento.</td>
+        <td rowspan="6">
+            {{$periodo->accionInstitucional}}
+        </td>
         <td>
             Porcentaje de Universalización del MESCP en los sistemas educativos
         </td>
@@ -121,12 +123,12 @@
         <td rowspan="6">SER, SEAE, SESFP, DDE, UAA, UAI, UAJ y TPSC</td>
         <td rowspan="6">5</td>
         <td rowspan="6">
-            Universalizar el Modelo Educativo Socio-Comunitario Productivo (MESCp) y lograr la participación, corresponsabilidad social comunitaria y armonizada de todos los actores involucrados en la educación en el departamento de Oruro, en la gestión 2020.
+            {{$periodo->accionCortoPlazo}}
         </td>
         <td rowspan="3">
-            Se incentivó la participación activa de padres y madres de familia, y organizaciones sociales en la implementación de los documentos curriculares.
+            {{$periodo->resultadoEsperado1}}
         </td>
-        <td rowspan="6">2,186,420</td>
+        <td rowspan="6">{{$periodo->totalPresupuesto}}</td>
     </tr>
     <tr>
         <td>Numero de Juntas escolares capacitados</td>
@@ -142,7 +144,9 @@
         <td>N° de Bachilleres en educación Alternativa y especial</td>
         <td>631</td>
         <td>618</td>
-        <td rowspan="3">Se incentivó la apropiación y funcionamiento de los consejos Educativos.</td>
+        <td rowspan="3">
+            {{$periodo->resultadoEsperado2}}
+        </td>
     </tr>
     <tr>
         <td>Porcentaje participación de los actores sociales</td>
@@ -156,7 +160,7 @@
     </tr>
     <tr>
         <td class="bg-green text-right text-bold" colspan="9">TOTAL ACCIÓN ESPECÍFICA DE CORTO PLAZO</td>
-        <td class="bg-green text-bold">2,186,420</td>
+        <td class="bg-green text-bold">{{$periodo->totalPresupuesto}}</td>
     </tr>
     <tr>
         <td class="bg-green text-right text-bold" colspan="9"></td>
@@ -165,7 +169,7 @@
     <tr>
         <td class="text-right text-bold" colspan="8"></td>
         <td class="bg-green text-right text-bold" >TOTAL GENERAL</td>
-        <td class="bg-green text-bold">2,186,420</td>
+        <td class="bg-green text-bold">{{$periodo->totalPresupuesto}}</td>
     </tr>
     </tbody>
 </table>
