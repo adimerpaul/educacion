@@ -75,7 +75,7 @@
         <td class="bg-green text-bold" rowspan="3">DENOMINACIÓN DE LA INTERVENCIÓN</td>
         <td class="" colspan="3">84- Institucionalización de las instancias de participación social comunitaria como base fundamental del desarrollo de la educación. </td>
         <td class="bg-green text-bold">FECHA</td>
-        <td class="">{{ date('d/m/Y') }}</td>
+        <td class="">{{ date('d/m/Y H:i:s') }}</td>
     </tr>
     <tr>
         <td class="" colspan="3">00- Actividad Central</td>
