@@ -90,26 +90,23 @@
         <q-item-label header class="text-white">
           Opciones
         </q-item-label>
-
-<!--        <EssentialLink-->
-<!--          v-for="link in linksList"-->
-<!--          :key="link.title"-->
-<!--          v-bind="link"-->
-<!--        />-->
-        <q-item v-for="link in linksList" :key="link.title" clickable :to="link.link" exact
-                class="text-grey"
-                active-class="menu"
-        >
-          <q-item-section avatar>
-            <q-icon :name="$route.path === link.link ? 'o_' + link.icon : link.icon"
-                    :class="$route.path === link.link ? 'text-white' : ''"/>
-          </q-item-section>
-          <q-item-section>
-            <q-item-label :class="$route.path === link.link ? 'text-white text-bold' : ''">
-              {{ link.title }}
-            </q-item-label>
-          </q-item-section>
-        </q-item>
+        <template v-for="link in linksList" :key="link.title">
+          <q-item clickable :to="link.link" exact
+                  class="text-grey"
+                  active-class="menu"
+                  v-if="link.can.includes($store.user.role)"
+          >
+            <q-item-section avatar>
+              <q-icon :name="$route.path === link.link ? 'o_' + link.icon : link.icon"
+                      :class="$route.path === link.link ? 'text-white' : ''"/>
+            </q-item-section>
+            <q-item-section>
+              <q-item-label :class="$route.path === link.link ? 'text-white text-bold' : ''">
+                {{ link.title }}
+              </q-item-label>
+            </q-item-section>
+          </q-item>
+        </template>
         <q-item clickable class="text-red" @click="logout">
           <q-item-section avatar>
             <q-icon name="exit_to_app" />
@@ -133,11 +130,16 @@ export default {
     return {
       leftDrawerOpen: false,
       linksList: [
-        {title: 'Principal', icon: 'home', link: '/'},
-        {title: 'Usuarios', icon: 'people', link: '/usuarios'},
-        {title: 'Gestion', icon: 'settings', link: '/gestion'},
-        {title: 'Almacen', icon: 'store', link: '/almacen'},
-        {title: 'Poa', icon: 'assignment', link: '/poa'}
+        // 'Administrador',
+        // 'Jefatura',
+        // 'Planificacion',
+        // 'Almacen',
+        // 'Area',
+        {title: 'Principal', icon: 'home', link: '/', can:['Administrador', 'Jefatura', 'Planificacion', 'Almacen', 'Area']},
+        {title: 'Usuarios', icon: 'people', link: '/usuarios', can:['Administrador']},
+        {title: 'Gestion', icon: 'settings', link: '/gestion', can:['Administrador', 'Jefatura', 'Planificacion']},
+        {title: 'Almacen', icon: 'store', link: '/almacen', can:['Administrador', 'Jefatura', 'Planificacion', 'Almacen']},
+        {title: 'Poa', icon: 'assignment', link: '/poa', can:['Administrador', 'Jefatura', 'Planificacion', 'Area']},
       ]
     }
   },

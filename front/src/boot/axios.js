@@ -21,6 +21,7 @@ export default boot(({ app, router }) => {
     'Jefatura',
     'Planificacion',
     'Almacen',
+    'Area',
   ]
   // filters
   app.config.globalProperties.$filters = {

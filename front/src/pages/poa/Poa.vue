@@ -64,7 +64,7 @@
         </q-td>
       </template>
     </q-table>
-    <pre>{{ poas }}</pre>
+<!--    <pre>{{ poas }}</pre>-->
     <q-dialog v-model="poaDialog" persistent>
       <q-card>
         <q-card-section class="q-pb-none row items-center">
