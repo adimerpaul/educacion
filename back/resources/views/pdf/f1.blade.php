@@ -9,10 +9,10 @@
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            font-size: 8px;
+            font-size: 9px;
         }
         body {
-            padding: 20px;
+            padding: 30px;
         }
         .table-container {
             width: 100%;
@@ -43,6 +43,9 @@
         }
         .bg-green {
             background-color: #d9e3ab;
+        }
+        .text-right {
+            text-align: right;
         }
 
     </style>
@@ -88,41 +91,102 @@
 <table class="table-container">
     <thead>
     <tr>
-        <th class="bg-green">Código PEI (1)</th>
-        <th class="bg-green">Acción Institucional Específica (2)</th>
-        <th class="bg-green">Indicador de Proceso (3)</th>
-        <th class="bg-green">Área o Unidad Responsable (4)</th>
-        <th class="bg-green">Código POA (5)</th>
-        <th class="bg-green">Acción de Corto Plazo Gestión 2020 (6)</th>
-        <th class="bg-green">Resultado Esperado Gestión 2020 (7)</th>
-        <th class="bg-green">Total Presupuesto de Gasto (Bs.) (8)</th>
+        <th class="bg-green" rowspan="2">Código PEI (1)</th>
+        <th class="bg-green" rowspan="2">ACCIÓN INSTITUCIONAL ESPECÍFICA (2)</th>
+        <th class="bg-green" colspan="3">INDICADOR DE PROCESO 2019 (3)</th>
+        <th class="bg-green" rowspan="2">AREA O UNIDAD RESPONSABLE (Direccion, Subdireccion) (4)</th>
+        <th class="bg-green" rowspan="2">CODIGO POA (5)</th>
+        <th class="bg-green" rowspan="2">ACCION DE CORTO PLAZO GESTION 2020 (6)</th>
+        <th class="bg-green" rowspan="2">RESULTADO ESPERADO GESTION  2020 (7)</th>
+        <th class="bg-green" rowspan="2">TOTAL PRESUPUESTO  DE GASTO (En Bs.) (8)</th>
+    </tr>
+    <tr>
+        <th class="bg-green">Descripción 2020</th>
+        <th class="bg-green">Meta 2020</th>
+        <th class="bg-green">Línea base al 2015</th>
     </tr>
     </thead>
     <tbody>
     <tr>
-        <td>3.4.10</td>
-        <td>Lograr la participación, corresponsabilidad social comunitaria y armonizada de todos los actores involucrados en la educación en el departamento.</td>
+        <td rowspan="6">3.4.10</td>
+        <td rowspan="6">Lograr la participación, corresponsabilidad social comunitaria y armonizada de todos los actores involucrados en la educación en el departamento.</td>
         <td>
-            <ul>
-                <li>Porcentaje de Universalización del MESCp en los sistemas educativos.</li>
-                <li>Número de Juntas escolares capacitadas: 640 (2020).</li>
-                <li>N° de Bachilleres educación Regular: 10,190 (2020).</li>
-                <li>N° de Bachilleres en educación Alternativa y Especial: 631 (2020).</li>
-                <li>Porcentaje de participación de los actores sociales: 60% (2020).</li>
-                <li>Porcentaje del presupuesto institucional ejecutado anualmente: 86% (2020).</li>
-            </ul>
+            Porcentaje de Universalización del MESCP en los sistemas educativos
         </td>
-        <td>SER, SEA, SEFP, DDE, UAA, IAJ, UAJ y TPSC</td>
-        <td>5</td>
         <td>
+            %50
+        </td>
+        <td>0</td>
+        <td rowspan="6">SER, SEAE, SESFP, DDE, UAA, UAI, UAJ y TPSC</td>
+        <td rowspan="6">5</td>
+        <td rowspan="6">
             Universalizar el Modelo Educativo Socio-Comunitario Productivo (MESCp) y lograr la participación, corresponsabilidad social comunitaria y armonizada de todos los actores involucrados en la educación en el departamento de Oruro, en la gestión 2020.
         </td>
-        <td>
+        <td rowspan="3">
             Se incentivó la participación activa de padres y madres de familia, y organizaciones sociales en la implementación de los documentos curriculares.
         </td>
-        <td>2,186,420</td>
+        <td rowspan="6">2,186,420</td>
+    </tr>
+    <tr>
+        <td>Numero de Juntas escolares capacitados</td>
+        <td>640</td>
+        <td>450</td>
+    </tr>
+    <tr>
+        <td>N° de Bachilleres educación Regular</td>
+        <td>10190</td>
+        <td>7896</td>
+    </tr>
+    <tr>
+        <td>N° de Bachilleres en educación Alternativa y especial</td>
+        <td>631</td>
+        <td>618</td>
+        <td rowspan="3">Se incentivó la apropiación y funcionamiento de los consejos Educativos.</td>
+    </tr>
+    <tr>
+        <td>Porcentaje participación de los actores sociales</td>
+        <td>60%</td>
+        <td>20%</td>
+    </tr>
+    <tr>
+        <td>Porcentaje del presupuesto institucional ejecutado anualmente</td>
+        <td>86%</td>
+        <td>70%</td>
+    </tr>
+    <tr>
+        <td class="bg-green text-right text-bold" colspan="9">TOTAL ACCIÓN ESPECÍFICA DE CORTO PLAZO</td>
+        <td class="bg-green text-bold">2,186,420</td>
+    </tr>
+    <tr>
+        <td class="bg-green text-right text-bold" colspan="9"></td>
+        <td class="bg-green text-bold"></td>
+    </tr>
+    <tr>
+        <td class="text-right text-bold" colspan="8"></td>
+        <td class="bg-green text-right text-bold" >TOTAL GENERAL</td>
+        <td class="bg-green text-bold">2,186,420</td>
     </tr>
     </tbody>
+</table>
+<br>
+<table class="table-container">
+    <tr>
+        <td class="bg-green text-bold" colspan="2">RESPONSABLES DE LA INFORMACIÓN</td>
+        <td class="bg-green text-bold">CARGO</td>
+        <td class="bg-green text-bold">FIRMA</td>
+    </tr>
+    <tr>
+        <td class="bg-green" >Elaborado:</td>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+    <tr>
+        <td class="bg-green">Aprobado:</td>
+        <td>Lic. Oscar Copa  Gonzales</td>
+        <td>Director Departamental de Educacion Oruro</td>
+        <td></td>
+    </tr>
 </table>
 
 {{--<h2>Total Acción Específica de Corto Plazo</h2>--}}

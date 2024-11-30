@@ -18,6 +18,7 @@ export default boot(({ app, router }) => {
   app.config.globalProperties.$store = useCounterStore()
   app.config.globalProperties.$roles = [
     'Administrador',
+    'Jefatura',
     'Planificacion',
     'Almacen',
   ]
@@ -34,6 +35,8 @@ export default boot(({ app, router }) => {
       switch (value) {
         case 'Administrador':
           return 'primary'
+        case 'Jefatura':
+          return 'secondary'
         case 'Planificacion':
           return 'green'
         case 'Almacen':
