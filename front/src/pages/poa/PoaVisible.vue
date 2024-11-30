@@ -84,7 +84,6 @@
                 <td>{{detalle.material.partida}}</td>
                 <td>{{detalle.material.unidad}}</td>
                 <td>
-<!--                  {{detalle.cantidad}}-->
                   <q-input v-model="detalle.cantidad" dense outlined type="number" min="1" @update:modelValue="updateCantidad(detalle)" :debounce="500" />
                 </td>
                 <td>{{detalle.material.precio}}</td>
@@ -100,35 +99,6 @@
       </q-card-section>
     </q-card>
 <!--    <pre>{{materials}}</pre>-->
-<!--    {-->
-<!--    "id": 2,-->
-<!--    "area_id": 1,-->
-<!--    "periodo_id": 1,-->
-<!--    "user_id": 1,-->
-<!--    "fecha": "2024-11-07 04:21:52",-->
-<!--    "estado": "Abierto",-->
-<!--    "area": {-->
-<!--    "id": 1,-->
-<!--    "nombre": "Unidad de Asuntos Administrativos"-->
-<!--    },-->
-<!--    "periodo": {-->
-<!--    "id": 1,-->
-<!--    "periodo": 2024,-->
-<!--    "fecha_inicio": "2024-01-01",-->
-<!--    "fecha_fin": "2024-05-05",-->
-<!--    "estado": "Finalizado"-->
-<!--    },-->
-<!--    "user": {-->
-<!--    "id": 1,-->
-<!--    "name": "Adminsitrador",-->
-<!--    "username": "admin",-->
-<!--    "role": "Jefatura",-->
-<!--    "cargo": "Empleado",-->
-<!--    "email": null,-->
-<!--    "area_id": 1-->
-<!--    },-->
-<!--    "detalles": []-->
-<!--    }-->
   </q-page>
 </template>
 <script>

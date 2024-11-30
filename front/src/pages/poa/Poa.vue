@@ -5,7 +5,10 @@
         <div class="row">
           <div class="col-12 col-md-6">
             <span class="text-bold">Gestiones Activas:</span>
-            <q-chip v-for="periodo in peridosActivos" :key="periodo.id" :label="periodo.periodo" color="positive" dense  size="14px" text-color="white"/>
+            <template v-for="periodo in peridosActivos" :key="periodo.id">
+              <q-chip :label="periodo.periodo" color="positive" dense  size="14px" text-color="white"/>
+              <q-btn icon="print" flat dense @click="print(periodo)" no-caps label="Formulario 1" />
+            </template>
           </div>
         </div>
       </q-card-section>
@@ -61,7 +64,7 @@
         </q-td>
       </template>
     </q-table>
-<!--    <pre>{{ poas }}</pre>-->
+    <pre>{{ poas }}</pre>
     <q-dialog v-model="poaDialog" persistent>
       <q-card>
         <q-card-section class="q-pb-none row items-center">
@@ -102,7 +105,7 @@ export default {
         { name: 'actions', label: 'Acciones', align: 'center' },
         { name: 'fecha', label: 'Fecha', align: 'center', field: row => moment(row.fecha).format('DD/MM/YYYY') },
         { name: 'estado', label: 'Estado', align: 'center', field: row => row.estado },
-        { name: 'periodo', label: 'Periodo', align: 'center', field: row => row.periodo.periodo },
+        { name: 'periodo', label: 'Periodo', align: 'center', field: row => row.periodo?.periodo },
         { name: 'area', label: 'Area', align: 'center', field: row => row.area?.nombre },
         { name: 'user', label: 'Usuario', align: 'center', field: row => row.user?.name },
       ],
@@ -113,6 +116,10 @@ export default {
     this.periodosActivos()
   },
   methods: {
+    print(periodo) {
+      const url = this.$url + 'formulario1/' + periodo.id
+      window.open(url, '_blank')
+    },
     periodosActivos() {
       this.$axios.get('periodos/activos').then(res => {
         this.peridosActivos = res.data
