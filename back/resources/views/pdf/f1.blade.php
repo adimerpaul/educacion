@@ -51,6 +51,7 @@
     </style>
 </head>
 <body>
+<img src="{{ public_path('logo.png') }}" alt="Logo" class="text-center" style="width: 150px;">
 
 <div class="text-center text-h1">FORMULARIO Nro. 1</div>
 <div class="text-center text-h1">ARTICULACIÓN PLAN OPERATIVO ANUAL (P.O.A.) Y PLAN ESTRATÉGICO INSTITUCIONAL (P.E.I.) </div>
@@ -173,16 +174,16 @@
     <tr>
         <td class="bg-green text-bold" colspan="2">RESPONSABLES DE LA INFORMACIÓN</td>
         <td class="bg-green text-bold">CARGO</td>
-        <td class="bg-green text-bold">FIRMA</td>
+        <td class="bg-green text-bold" style="width: 150px" >FIRMA</td>
     </tr>
     <tr>
-        <td class="bg-green" >Elaborado:</td>
+        <td class="bg-green" style="height: 20px">Elaborado:</td>
         <td></td>
         <td></td>
         <td></td>
     </tr>
     <tr>
-        <td class="bg-green">Aprobado:</td>
+        <td class="bg-green" style="height: 20px">Aprobado:</td>
         <td>Lic. Oscar Copa  Gonzales</td>
         <td>Director Departamental de Educacion Oruro</td>
         <td></td>
